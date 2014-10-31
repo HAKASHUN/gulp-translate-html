@@ -1,5 +1,5 @@
 # gulp-translate-html
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
+[![Build Status](https://travis-ci.org/HAKASHUN/gulp-translate-html.svg?branch=master)](https://travis-ci.org/HAKASHUN/gulp-translate-html)
 
 > translate-html plugin for [gulp](https://github.com/wearefractal/gulp)
 
