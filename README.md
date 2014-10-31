@@ -25,6 +25,33 @@ gulp.src("./src/*.html")
 	.pipe(gulp.dest("./dist"));
 ```
 
+```javascript
+var translate-html = require("gulp-translate-html");
+
+gulp.src("./src/*.html")
+	.pipe(translate-html({
+		messages: require('./locale/ja.json')
+	}))
+	.pipe(gulp.dest("./dist"));
+```
+
+You can change the template settings to use alternative delimiters by use of [https://lodash.com/docs#templateSettings](https://lodash.com/docs#templateSettings).
+
+
+```javascript
+var translate-html = require("gulp-translate-html");
+
+gulp.src("./src/*.html")
+	.pipe(translate-html({
+		messages: require('./locale/ja.json'),
+		templateSettings: {
+			interpolate: /{{([\s\S]+?)}}/g
+		}
+	}))
+	.pipe(gulp.dest("./dist"));
+```
+
+
 ## API
 
 ### translate-html(options)
