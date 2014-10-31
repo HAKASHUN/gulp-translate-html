@@ -1,5 +1,3 @@
-(PLUGIN AUTHOR: Please read [Plugin README conventions](https://github.com/wearefractal/gulp/wiki/Plugin-README-Conventions), then delete this line)
-
 # gulp-translate-html
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
 
@@ -18,9 +16,11 @@ Then, add it to your `gulpfile.js`:
 ```javascript
 var translate-html = require("gulp-translate-html");
 
-gulp.src("./src/*.ext")
+gulp.src("./src/*.html")
 	.pipe(translate-html({
-		msg: "Hello Gulp!"
+		messages: {
+          "name": "Taro Yamada"
+	    }
 	}))
 	.pipe(gulp.dest("./dist"));
 ```
@@ -29,11 +29,10 @@ gulp.src("./src/*.ext")
 
 ### translate-html(options)
 
-#### options.msg
-Type: `String`  
-Default: `Hello World`
+#### options.messages
+Type: `String | Object`  
 
-The message you wish to attach to file.
+Your Messages Object or file path.
 
 
 ## License
