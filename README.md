@@ -30,9 +30,9 @@ gulp.src("./src/*.html")
 ### translate-html(options)
 
 #### options.messages
-Type: `String | Object`  
+Type: `Object`  
 
-Your Messages Object or file path.
+Your Messages Object.
 
 
 ## License
