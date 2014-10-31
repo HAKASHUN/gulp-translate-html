@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "through2": "*",
-    "gulp-util": "~2.2.0"
+    "gulp-util": "~2.2.0",
+    "lodash": "*"
   },
   "devDependencies": {
     "mocha": "*",

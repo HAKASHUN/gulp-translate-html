@@ -1,18 +1,35 @@
 var through = require("through2"),
-	gutil = require("gulp-util");
+	gutil = require("gulp-util"),
+	_ = require("lodash");
 
-module.exports = function (param) {
+module.exports = function (options) {
 	"use strict";
 
-	// if necessary check for required param(s), e.g. options hash, etc.
-	if (!param) {
-		throw new gutil.PluginError("gulp-translate-html", "No param supplied");
+	// if necessary check for required options(s), e.g. options hash, etc.
+	if (!options) {
+		throw new gutil.PluginError("gulp-translate-html", "No options supplied");
+	}
+
+	// delimiters setting
+	if(options.templateSettings) {
+		_.assign(_.templateSettings, options.templateSettings);
+	}
+
+	/**
+	 * compile html file with object
+	 * @param  {Object} file input file
+	 * @return {Object} compiled Template Object
+	 */
+	function compiler(file) {
+		var compiled = _.template(file.contents);
+		return compiled(options.messages);
 	}
 
 	// see "Writing a plugin"
 	// https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/README.md
 	function translateHtml(file, enc, callback) {
 		/*jshint validthis:true*/
+
 
 		// Do nothing if no contents
 		if (file.isNull()) {
@@ -34,11 +51,11 @@ module.exports = function (param) {
 
 		// check if file.contents is a `Buffer`
 		if (file.isBuffer()) {
+			var compiled = compiler(file);
 
 			// manipulate buffer in some way
 			// http://nodejs.org/api/buffer.html
-			file.contents = new Buffer(String(file.contents) + "\n" + param);
-
+			file.contents = new Buffer(compiled);
 			this.push(file);
 
 		}
