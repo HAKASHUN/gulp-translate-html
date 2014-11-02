@@ -49,15 +49,15 @@ module.exports = function (options) {
 			return callback();
 		}
 
-		// check if file.contents is a `Buffer`
-		if (file.isBuffer()) {
+		try {
 			var compiled = compiler(file);
 
 			// manipulate buffer in some way
 			// http://nodejs.org/api/buffer.html
 			file.contents = new Buffer(compiled);
 			this.push(file);
-
+		} catch(err) {
+			this.emit('error', new gutil.PluginError('gulp-translate-html', err, {fileName: file.path}));
 		}
 		return callback();
 	}
